@@ -2,8 +2,13 @@
   "collection": "ArchitectsWifHat",
   "edition": "2026",
   "purpose": "Layered NFT generator component library",
-  "style": "Cinematic polished 2D game illustration; not flat hand-drawn line art",
-  "signature": "The Arc logo must remain visible on caps and clothing",
+  "style": "Polished 2D animated game-art illustration based on the supplied ArchitectsWifHat samples: strong contour lines, dimensional cel shading, textured streetwear, expressive faces, and cinematic warm lighting.",
+  "referenceRules": [
+    "Use the supplied character samples as the identity source for proportions, Arc-logo placement, streetwear language, skin-tone range, poses, and facial character.",
+    "Use the supplied sunset character image as the finish target for richer lighting, depth, fabric texture, and atmospheric backgrounds.",
+    "Keep bodies, clothing, expressions, accessories, caps, and backgrounds as separate generator-ready layers.",
+    "The Arc logo remains visible on caps and clothing wherever that trait is present."
+  ],
   "folders": {
     "bodies": "Base bodies and posture positions",
     "clothing": "Wearable clothing layers with Arc logo variations",
@@ -13,8 +18,16 @@
     "backgrounds": "Finished environmental background plates"
   },
   "sourceReferences": [
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1908-ggimWu9G4ZrTZYnKKWEPdN2xtMXSbh.jpeg",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1945-sG0USXA9wXLQaryMyIxMjqfN7P6Hkq.jpeg",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7A440244-7C83-467F-B068-AD84D1AB23AC-iqTaLtpgMzFpe1pzKy3ReVndjY1PzR.jpeg"
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7A440244-7C83-467F-B068-AD84D1AB23AC-rozncCPp8UKvmHpBD1hW3oDSfX7qcF.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1917-O6Cizi0HGANh9huxbqivrG1Kdr7hDA.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1908-aIyG88hxuTLmoEJodNBbYPa5Nq4nqy.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1921-jokOTRYfrrC9O1aqf5BDdZKA4NLqvl.png",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1945-GRSeGV0WWWz1xGA912s8pbPeOTrvh3.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1947-2JT4dBZj1NBa4WTtgcs62ZsUNxHznc.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1909-iUM9XqGtaJ4im3vGNCEtRHesWj3frK.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1949-m87Wq7t40on7RNDn7kVwFYg5pDUuq4.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1948-BNHM5cqpNRnmvVZHEs8KPBaAwaBp37.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1911-rpZcGDTUJMtnBLwF0DECa5HZEUt9a1.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1920-B9b0mbYVkB3PPMgx5LlO8Yj3bd9FBl.jpeg"
   ]
 }
