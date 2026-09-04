@@ -1,0 +1,20 @@
+{
+  "collection": "ArchitectsWifHat",
+  "edition": "2026",
+  "purpose": "Layered NFT generator component library",
+  "style": "Cinematic polished 2D game illustration; not flat hand-drawn line art",
+  "signature": "The Arc logo must remain visible on caps and clothing",
+  "folders": {
+    "bodies": "Base bodies and posture positions",
+    "clothing": "Wearable clothing layers with Arc logo variations",
+    "expressions": "Face and expression layers",
+    "accessories": "Jewelry, eyewear, tattoos, and other traits",
+    "caps": "Cap layers with Arc logo variations",
+    "backgrounds": "Finished environmental background plates"
+  },
+  "sourceReferences": [
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1908-ggimWu9G4ZrTZYnKKWEPdN2xtMXSbh.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1945-sG0USXA9wXLQaryMyIxMjqfN7P6Hkq.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7A440244-7C83-467F-B068-AD84D1AB23AC-iqTaLtpgMzFpe1pzKy3ReVndjY1PzR.jpeg"
+  ]
+}
