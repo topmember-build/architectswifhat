@@ -57,6 +57,29 @@ export function Community() {
                   </a>
                 </div>
               )}
+              {i === 1 && (
+                <div className="border-t border-border/80 p-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-arc">Community identity</p>
+                  <h3 className="mt-3 text-xl font-extrabold tracking-tight">Why own an ArchitectWifHat?</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    ArchitectsWifHat represents your place in the Arc community. It turns the Architect spirit into a recognizable community identity for the people building, supporting, and participating in the Arc ecosystem.
+                  </p>
+                  <div className="mt-5 grid gap-4 text-sm leading-6 text-muted-foreground">
+                    <div>
+                      <h4 className="font-semibold text-foreground">A symbol of belonging</h4>
+                      <p className="mt-1">Communities become stronger when their members have something that represents, “I’m part of this.” The hat can be your digital representation of the builder mindset and Arc identity.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">What it represents</h4>
+                      <p className="mt-1">Show your Arc identity, celebrate the people creating and contributing, own a piece of community culture, connect with other holders, and celebrate your journey as a developer, creator, community member, or active participant.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Community collectible, not official status</h4>
+                      <p className="mt-1">ArchitectsWifHat does not replace the official Architects badge or prove a tier. Owning it does not grant official Architect status, points, benefits, or a Circle or Arc role. Official status comes through the Arc House Architects Program and its requirements.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
               {i === 2 && (
                 <div className="border-t border-border/80 p-6">
                   <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-arc">Arc community guide</p>
