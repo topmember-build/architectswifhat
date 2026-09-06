@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, CalendarDays, ExternalLink } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { ArcMark } from '@/components/arc-mark'
+import Image from 'next/image'
 import { SITE } from '@/lib/site'
 
 export default function MemePage() {
@@ -34,7 +34,7 @@ export default function MemePage() {
 
             <div className="relative overflow-hidden rounded-[2rem] border border-border bg-secondary shadow-2xl shadow-primary/10">
               <div className="absolute left-5 top-5 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-background/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-primary-foreground backdrop-blur-sm">
-                <ArcMark className="size-4" /> Arc mainnet
+                <Image src="/architectswifhat-components/brand/arc-network-mark.jpg" alt="Arc logo" width={18} height={18} className="rounded-full object-cover" /> Arc mainnet
               </div>
               <img src="/architectswifhat-components/hero/arc-hero.png" alt="Architect wearing the burgundy Arc hat" className="aspect-[4/3] w-full object-cover" />
             </div>

@@ -11,7 +11,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
   { label: 'Community', href: '#community' },
-  { label: 'Meme launch', href: '/meme' },
+  { label: 'Community meme', href: '/meme' },
   { label: 'FAQ', href: '#faq' },
 ]
 
