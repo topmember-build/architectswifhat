@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@ArchitectWifHat',
     title: 'ArchitectsWifHat',
-    description: 'Put the hat on Architects.',
+    description: 'The hat stays on.',
   },
   generator: 'v0.app',
 }

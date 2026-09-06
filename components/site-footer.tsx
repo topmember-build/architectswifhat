@@ -50,7 +50,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} ArchitectsWifHat. Put the hat on Architects.</p>
+          <p>© {new Date().getFullYear()} ArchitectsWifHat. The hat stays on.</p>
           <p>You either get it… or you don&apos;t have the hat yet.</p>
         </div>
       </div>
