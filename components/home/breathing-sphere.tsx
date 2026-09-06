@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Line, OrbitControls, Points, PointMaterial, Text } from '@react-three/drei'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Component, type ErrorInfo, type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import type { Group, Points as ThreePoints } from 'three'
 import * as THREE from 'three'
 
@@ -150,6 +150,26 @@ function SphereField({ reducedMotion }: { reducedMotion: boolean }) {
   )
 }
 
+class WebGLErrorBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(_error: Error, _errorInfo: ErrorInfo) {
+    // Some sandboxed browsers report a WebGL context during probing but reject Three.js renderer creation.
+  }
+
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children
+  }
+}
+
+function SphereFallback() {
+  return <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(127,222,255,0.24),transparent_24%),radial-gradient(circle_at_50%_48%,transparent_0_31%,rgba(127,222,255,0.16)_31.5%_32%,transparent_32.5%),radial-gradient(circle_at_50%_48%,transparent_0_42%,rgba(247,186,82,0.14)_42.5%_43%,transparent_43.5%)]" />
+}
+
 export function BreathingSphere() {
   const [reducedMotion, setReducedMotion] = useState(false)
   const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null)
@@ -170,13 +190,15 @@ export function BreathingSphere() {
   return (
     <div className="absolute inset-0" aria-hidden="true">
       {webglAvailable === true ? (
-        <Canvas camera={{ position: [0, 0, 4.5], fov: 42 }} dpr={[1, 1.5]} frameloop={reducedMotion ? 'demand' : 'always'} gl={{ antialias: true, alpha: true }}>
-          <ambientLight intensity={0.5} />
-          <SphereField reducedMotion={reducedMotion} />
-          <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} rotateSpeed={0.2} />
-        </Canvas>
+        <WebGLErrorBoundary fallback={<SphereFallback />}>
+          <Canvas camera={{ position: [0, 0, 4.5], fov: 42 }} dpr={[1, 1.5]} frameloop={reducedMotion ? 'demand' : 'always'} gl={{ antialias: true, alpha: true }}>
+            <ambientLight intensity={0.5} />
+            <SphereField reducedMotion={reducedMotion} />
+            <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} rotateSpeed={0.2} />
+          </Canvas>
+        </WebGLErrorBoundary>
       ) : (
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(127,222,255,0.24),transparent_24%),radial-gradient(circle_at_50%_48%,transparent_0_31%,rgba(127,222,255,0.16)_31.5%_32%,transparent_32.5%),radial-gradient(circle_at_50%_48%,transparent_0_42%,rgba(247,186,82,0.14)_42.5%_43%,transparent_43.5%)]" />
+        <SphereFallback />
       )}
     </div>
   )
