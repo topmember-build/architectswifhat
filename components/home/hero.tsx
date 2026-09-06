@@ -14,8 +14,8 @@ export function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full border border-arc/55 bg-[#06184c]/90 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
             <span className="size-1.5 rounded-full bg-arc" /> First community lore-driven NFT/meme brand born from the Arc community
           </span>
-          <h1 className="mt-6 text-balance text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-            The hat stays on.
+          <h1 className="mt-6 text-balance text-5xl font-black uppercase leading-[0.95] tracking-tight text-primary sm:text-6xl lg:text-7xl">
+            THE HAT STAYS ON.
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             Nobody knows who put the hat on Architects. Nobody questioned it. They just started wearing it. This is the
@@ -71,14 +71,14 @@ export function Hero() {
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="flex items-center gap-6">
-                The hat stays on <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+                THE HAT STAYS ON. <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground" aria-hidden="true">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="flex items-center gap-6">
-                The hat stays on <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+                THE HAT STAYS ON. <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>
