@@ -6,7 +6,7 @@ import { sql } from 'drizzle-orm'
 import { db } from '@/lib/db'
 import { whitelistApplications, whitelistTaskProofs } from '@/lib/db/schema'
 
-const TASK_KEYS = ['follow', 'repost', 'tag', 'join'] as const
+const TASK_KEYS = ['arcFollow', 'follow', 'repost', 'tag', 'join'] as const
 const walletPattern = /^0x[a-fA-F0-9]{40}$/
 const MAX_PROOF_LENGTH = 500
 const ALLOWED_PROOF_HOSTS = new Set(['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'])
@@ -40,7 +40,7 @@ function parseProof(value: string) {
   }
 }
 
-async function verifyProof(taskKey: string, value: string) {
+async function verifyProof(taskKey: typeof TASK_KEYS[number], value: string) {
   const url = parseProof(value)
   if (!url) return false
   if (url.pathname === '/' || url.pathname === '') return false
