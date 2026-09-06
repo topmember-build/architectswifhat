@@ -7,12 +7,15 @@ import { submitWhitelistApplication, verifyWhitelistProofs } from '@/app/actions
 
 type TaskId = 'arcFollow' | 'follow' | 'repost' | 'tag' | 'join'
 type TaskDef = { id: TaskId; title: string; description: string; action: string; href: string; proofLabel: string; proofPlaceholder: string }
+const COMMUNITY_PROOF_TEXT = `I’m going to be participating and minting an ArchitectWifHat on ${SITE.twitterHandle}. I just secured a spot — you can secure yours too: ArchitectsWifHat — Put the Hat on Architects`
+const COMMUNITY_PROOF_URL = `https://x.com/intent/post?text=${encodeURIComponent(COMMUNITY_PROOF_TEXT)}`
+
 const TASKS: TaskDef[] = [
   { id: 'arcFollow', title: 'Follow Arc on X', description: 'Follow the official Arc account for mainnet updates.', action: 'Open Arc on X', href: 'https://x.com/arc', proofLabel: 'Your X profile URL', proofPlaceholder: 'https://x.com/yourhandle' },
   { id: 'follow', title: 'Follow ArchitectsWifHat on X', description: `Follow ${SITE.twitterHandle} to stay in the loop.`, action: 'Open X', href: SITE.twitter, proofLabel: 'Your X profile URL', proofPlaceholder: 'https://x.com/yourhandle' },
   { id: 'repost', title: 'Repost and like the pinned post', description: 'Repost and like the pinned ArchitectsWifHat announcement.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your repost', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
   { id: 'tag', title: 'Tag 3 Architects', description: 'Tag three friends who need an ArchitectWifHat.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your tag post', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
-  { id: 'join', title: 'Share community proof', description: 'Share a public X link showing your community participation.', action: 'Open X', href: SITE.twitter, proofLabel: 'Community proof URL', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
+  { id: 'join', title: 'Share community proof', description: 'Share a public X post showing your community participation.', action: 'Draft post on X', href: COMMUNITY_PROOF_URL, proofLabel: 'Community proof URL', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
 ]
 const STEPS = ['Tasks', 'Verify proof', 'Wallet', 'Review'] as const
 const isEvmAddress = (value: string) => /^0x[a-fA-F0-9]{40}$/.test(value.trim())
