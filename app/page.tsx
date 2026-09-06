@@ -7,7 +7,7 @@ import { Faq } from '@/components/home/faq'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <SiteNav />
       <main>
         <Hero />

@@ -63,10 +63,11 @@
 
 * { @apply border-border outline-ring/50; }
 html { background: var(--background); }
-body { @apply bg-background text-foreground antialiased; }
+body { @apply bg-transparent text-foreground antialiased; }
 button { cursor: pointer; }
 
-.shade-background { position: fixed; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; background: #03091d; }
+.shade-background { position: fixed; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; background-color: #0753d6; background-image: radial-gradient(ellipse at 52% 42%, rgba(38, 141, 255, .9) 0%, rgba(15, 75, 210, .82) 38%, rgba(2, 19, 78, .98) 100%), repeating-linear-gradient(0deg, rgba(166, 232, 218, .16) 0 1px, transparent 1px 7px), repeating-linear-gradient(90deg, rgba(4, 16, 66, .16) 0 1px, transparent 1px 8px); background-blend-mode: screen, overlay, multiply; animation: throw-shade-drift 18s ease-in-out infinite alternate; }
+@keyframes throw-shade-drift { from { filter: hue-rotate(0deg) saturate(1); background-position: 50% 50%, 0 0, 0 0; } to { filter: hue-rotate(8deg) saturate(1.15); background-position: 54% 46%, 0 12px, 10px 0; } }
 body > :not(.shade-background) { position: relative; z-index: 1; }
 ::selection { background: var(--burgundy); color: var(--foreground); }
 
@@ -87,6 +88,7 @@ body > :not(.shade-background) { position: relative; z-index: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .awh-marquee { animation: none; }
+  .shade-background { animation: none; }
   .motion-reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
 }

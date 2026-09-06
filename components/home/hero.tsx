@@ -8,10 +8,9 @@ import { SITE } from '@/lib/site'
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/5 via-transparent to-background/35" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
-        <MotionReveal className="relative z-10">
+        <MotionReveal className="relative z-10 rounded-2xl bg-[#020b32]/35 p-4 backdrop-blur-[2px] sm:p-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
             <span className="size-1.5 rounded-full bg-arc" /> A Collection born from the Arc community
           </span>

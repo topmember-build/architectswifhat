@@ -72,7 +72,7 @@ export function ShadeBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const gl = canvas?.getContext('webgl', { alpha: false, antialias: false })
+    const gl = canvas?.getContext('webgl', { alpha: true, antialias: false })
     if (!canvas || !gl) return
 
     const vertex = compileShader(gl, gl.VERTEX_SHADER, vertexShader)
@@ -89,6 +89,7 @@ export function ShadeBackground() {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW)
     gl.useProgram(program)
+    gl.clearColor(0, 0, 0, 0)
     const position = gl.getAttribLocation(program, 'a_position')
     gl.enableVertexAttribArray(position)
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
