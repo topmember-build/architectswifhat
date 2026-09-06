@@ -152,22 +152,32 @@ function SphereField({ reducedMotion }: { reducedMotion: boolean }) {
 
 export function BreathingSphere() {
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => setReducedMotion(mediaQuery.matches)
-    update()
-    mediaQuery.addEventListener('change', update)
-    return () => mediaQuery.removeEventListener('change', update)
+    const updateMotion = () => setReducedMotion(mediaQuery.matches)
+    updateMotion()
+    mediaQuery.addEventListener('change', updateMotion)
+
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+    setWebglAvailable(Boolean(context))
+
+    return () => mediaQuery.removeEventListener('change', updateMotion)
   }, [])
 
   return (
     <div className="absolute inset-0" aria-hidden="true">
-      <Canvas camera={{ position: [0, 0, 4.5], fov: 42 }} dpr={[1, 1.5]} frameloop={reducedMotion ? 'demand' : 'always'} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.5} />
-        <SphereField reducedMotion={reducedMotion} />
-        <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} rotateSpeed={0.2} />
-      </Canvas>
+      {webglAvailable === true ? (
+        <Canvas camera={{ position: [0, 0, 4.5], fov: 42 }} dpr={[1, 1.5]} frameloop={reducedMotion ? 'demand' : 'always'} gl={{ antialias: true, alpha: true }}>
+          <ambientLight intensity={0.5} />
+          <SphereField reducedMotion={reducedMotion} />
+          <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} rotateSpeed={0.2} />
+        </Canvas>
+      ) : (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(127,222,255,0.24),transparent_24%),radial-gradient(circle_at_50%_48%,transparent_0_31%,rgba(127,222,255,0.16)_31.5%_32%,transparent_32.5%),radial-gradient(circle_at_50%_48%,transparent_0_42%,rgba(247,186,82,0.14)_42.5%_43%,transparent_43.5%)]" />
+      )}
     </div>
   )
 }
