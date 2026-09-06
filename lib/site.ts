@@ -11,6 +11,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
   { label: 'Community', href: '#community' },
+  { label: 'Meme launch', href: '/meme' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -48,7 +49,7 @@ export const FAQS = [
   },
   {
     q: 'What is the supply?',
-    a: '2026 hats for the community that showed up, stayed, built, and watched Arc become what it is today.',
+    a: 'The supply is 2026 ArchitectsWifHats — Architects who Put the hat on.',
   },
   {
     q: 'Do I need the hat?',
