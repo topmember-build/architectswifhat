@@ -16,7 +16,7 @@ const RATE_LIMIT_MAX_REQUESTS = 12
 async function enforceRateLimit() {
   const requestHeaders = await headers()
   const platformAddress = requestHeaders.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
-  const address = platformAddress || requestHeaders.get('x-real-ip') || 'unknown'
+  const address = platformAddress || 'anonymous'
   const key = createHash('sha256').update(address).digest('hex')
   const result = await db.execute<{ request_count: number }>(sql`
     INSERT INTO whitelist_rate_limits (key, window_started_at, request_count)
@@ -26,6 +26,9 @@ async function enforceRateLimit() {
       window_started_at = CASE WHEN whitelist_rate_limits.window_started_at <= now() - (${RATE_LIMIT_WINDOW_MINUTES} * interval '1 minute') THEN now() ELSE whitelist_rate_limits.window_started_at END
     RETURNING request_count
   `)
+  if (Math.random() < 0.02) {
+    await db.execute(sql`DELETE FROM whitelist_rate_limits WHERE window_started_at < now() - interval '24 hours'`)
+  }
   if (Number(result.rows[0]?.request_count ?? RATE_LIMIT_MAX_REQUESTS + 1) > RATE_LIMIT_MAX_REQUESTS) throw new Error('RATE_LIMITED')
 }
 
@@ -34,6 +37,11 @@ function parseProof(value: string) {
   try {
     const url = new URL(value)
     if (url.protocol !== 'https:' || !ALLOWED_PROOF_HOSTS.has(url.hostname.toLowerCase()) || url.username || url.password || url.port) return null
+    url.hostname = url.hostname.toLowerCase()
+    url.hash = ''
+    for (const key of [...url.searchParams.keys()]) {
+      if (key.toLowerCase().startsWith('utm_') || ['ref', 'referrer', 'source'].includes(key.toLowerCase())) url.searchParams.delete(key)
+    }
     return url
   } catch {
     return null
@@ -59,7 +67,14 @@ async function verifyProof(taskKey: typeof TASK_KEYS[number], value: string) {
 
 function normalizeProofs(input: { proofs: Record<string, string> }) {
   if (!input || typeof input.proofs !== 'object' || input.proofs === null) throw new Error('INVALID_INPUT')
-  return TASK_KEYS.map((key) => ({ key, value: typeof input.proofs[key] === 'string' ? input.proofs[key].trim() : '' }))
+  const proofs = TASK_KEYS.map((key) => {
+    const raw = typeof input.proofs[key] === 'string' ? input.proofs[key].trim() : ''
+    const url = parseProof(raw)
+    return { key, value: url?.toString() ?? '' }
+  })
+  const actionProofs = proofs.filter(({ key }) => key !== 'arcFollow' && key !== 'follow').map(({ value }) => value).filter(Boolean)
+  if (new Set(actionProofs).size !== actionProofs.length) throw new Error('DUPLICATE_PROOF')
+  return proofs
 }
 
 async function verifyAllProofs(proofs: { key: typeof TASK_KEYS[number]; value: string }[]) {
