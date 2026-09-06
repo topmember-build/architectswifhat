@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site'
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[oklch(0.26_0.06_258)] via-background to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/55 to-background" />
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-30" />
       <div className="pointer-events-none absolute left-1/2 top-24 size-[520px] -translate-x-1/2 rounded-full bg-arc/20 blur-[120px] motion-safe:animate-[pulse_7s_ease-in-out_infinite]" />
 

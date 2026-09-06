@@ -18,7 +18,7 @@ export function SiteNav() {
   }, [])
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled ? 'border-b border-border bg-background/85 backdrop-blur-md' : 'bg-transparent'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled ? 'border-b border-bone/15 bg-background/80 backdrop-blur-md' : 'bg-transparent'}`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <ArcMark className="size-9" />

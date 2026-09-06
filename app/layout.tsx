@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Poppins, DM_Mono } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
+import { ShadeBackground } from '@/components/shade-background'
 import './globals.css'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-poppins' })
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`bg-background ${poppins.variable} ${dmMono.variable}`}>
       <body className="font-sans">
+        <ShadeBackground />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
