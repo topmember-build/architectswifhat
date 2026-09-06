@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'ArchitectsWifHat',
-  tagline: 'Put the Hat on Architects.',
+  tagline: 'The hat stays on.',
   description: 'A 1/1 2026-supply NFT collection born from the Arc community.',
   twitter: 'https://x.com/ArchitectWifHat',
   twitterHandle: '@ArchitectWifHat',

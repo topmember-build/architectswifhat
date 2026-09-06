@@ -25,7 +25,7 @@ export default function CollectionPage() {
             <div className="max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-arc">The collection</p>
               <h1 className="mt-5 text-balance text-5xl font-black tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-                Put the hat on <span className="text-arc">Architects.</span>
+                The hat stays on.
               </h1>
               <p className="mt-7 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
                 A 1/1 2026-supply NFT collection and lore-driven meme brand born from the Arc community. Every Architect has a story. Every hat means you were here.

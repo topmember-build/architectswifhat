@@ -15,7 +15,7 @@ export function Hero() {
             <span className="size-1.5 rounded-full bg-arc" /> First community lore-driven NFT/meme brand born from the Arc community
           </span>
           <h1 className="mt-6 text-balance text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-            Put the Hat on <span className="text-primary">Architects</span>.
+            The hat stays on.
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             Nobody knows who put the hat on Architects. Nobody questioned it. They just started wearing it. This is the
