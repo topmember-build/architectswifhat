@@ -41,7 +41,7 @@ export default function CollectionPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-secondary/70 p-5"><p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Supply</p><p className="mt-2 text-3xl font-black">2,026</p><p className="mt-1 text-xs text-muted-foreground">unique hats</p></div>
+              <div className="rounded-2xl border border-border bg-secondary/70 p-5"><p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Supply</p><p className="mt-2 text-3xl font-black">2,026</p><p className="mt-1 text-xs text-muted-foreground">unique ArchitectsWifHat</p></div>
               <div className="rounded-2xl border border-border bg-secondary/70 p-5"><p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Network</p><p className="mt-2 text-3xl font-black">Arc</p><p className="mt-1 text-xs text-muted-foreground">mainnet</p></div>
               <div className="col-span-2 rounded-2xl border border-arc/35 bg-arc/10 p-5 sm:col-span-1 lg:col-span-2"><p className="font-mono text-[10px] uppercase tracking-widest text-arc">Mint status</p><p className="mt-2 text-3xl font-black text-arc">Coming soon</p><p className="mt-1 text-xs text-muted-foreground">dates and price will be announced</p></div>
             </div>
