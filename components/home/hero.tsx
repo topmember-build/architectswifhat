@@ -12,10 +12,10 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
         <MotionReveal className="relative z-10 rounded-2xl border border-arc/35 bg-[#020b32]/78 p-4 shadow-2xl shadow-[#020b32]/35 backdrop-blur-md sm:p-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-arc/55 bg-[#06184c]/90 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
-            <span className="size-1.5 rounded-full bg-arc" /> A Collection born from the Arc community
+            <span className="size-1.5 rounded-full bg-arc" /> First community lore-driven NFT/meme brand born from the Arc community
           </span>
-          <h1 className="mt-6 text-balance text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-            Put the Hat on <span className="text-primary">Architects</span>.
+          <h1 className="hat-tagline-glow mt-6 text-balance text-5xl font-black uppercase leading-[0.95] tracking-tight text-primary sm:text-6xl lg:text-7xl">
+            THE HAT STAYS ON.
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             Nobody knows who put the hat on Architects. Nobody questioned it. They just started wearing it. This is the
@@ -29,6 +29,19 @@ export function Hero() {
             <a href={SITE.twitter} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold transition-colors hover:bg-secondary">
               Follow on X
             </a>
+          </div>
+          <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-primary/35 bg-primary/10 px-4 py-3 shadow-lg shadow-primary/10">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Emblem-500x281-rrThHycdLLeEJxBSQNPvUVUgx0SVzM.png"
+              width={42}
+              height={42}
+              alt="OpenSea"
+              className="size-10 rounded-full object-cover"
+            />
+            <div>
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-primary">Minting on</p>
+              <p className="text-base font-bold text-foreground">OpenSea</p>
+            </div>
           </div>
           <dl className="mt-10 flex gap-8 border-t border-border pt-6">
             <div>
@@ -70,15 +83,15 @@ export function Hero() {
         <div className="flex overflow-hidden">
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
             {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-6">
-                Put the hat on Architects <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+              <span key={i} className="hat-tagline-glow flex items-center gap-6 text-primary">
+                THE HAT STAYS ON. <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground" aria-hidden="true">
             {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-6">
-                Put the hat on Architects <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+              <span key={i} className="hat-tagline-glow flex items-center gap-6 text-primary">
+                THE HAT STAYS ON. <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>

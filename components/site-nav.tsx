@@ -29,9 +29,17 @@ export function SiteNav() {
 
         <div className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              {link.label}
-            </a>
+            <>
+              {link.href.startsWith('/') ? (
+                <Link key={link.href} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                  {link.label}
+                </Link>
+              ) : (
+                <a key={link.href} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                  {link.label}
+                </a>
+              )}
+            </>
           ))}
         </div>
 
@@ -53,9 +61,17 @@ export function SiteNav() {
         <div className="border-t border-border bg-background/95 px-5 py-4 backdrop-blur-md lg:hidden">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground">
-                {link.label}
-              </a>
+              <span key={link.href}>
+                {link.href.startsWith('/') ? (
+                  <Link href={link.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground">
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a href={link.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground">
+                    {link.label}
+                  </a>
+                )}
+              </span>
             ))}
           </div>
           <div className="mt-3 flex flex-col gap-2">

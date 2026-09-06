@@ -7,7 +7,7 @@ import { submitWhitelistApplication, verifyWhitelistProofs } from '@/app/actions
 
 type TaskId = 'arcFollow' | 'follow' | 'repost' | 'tag' | 'join'
 type TaskDef = { id: TaskId; title: string; description: string; action: string; href: string; proofLabel: string; proofPlaceholder: string }
-const COMMUNITY_PROOF_TEXT = `I’m going to be participating and minting an ArchitectWifHat on ${SITE.twitterHandle}. I just secured a spot — you can secure yours too: ArchitectsWifHat — Put the Hat on Architects`
+const COMMUNITY_PROOF_TEXT = `I am going to be participating and minting an ArchitectWifHat on ${SITE.twitterHandle}. I just secured a spot — you can secure yours too.`
 const COMMUNITY_PROOF_URL = `https://x.com/intent/post?text=${encodeURIComponent(COMMUNITY_PROOF_TEXT)}`
 
 const TASKS: TaskDef[] = [

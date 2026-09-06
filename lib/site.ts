@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'ArchitectsWifHat',
-  tagline: 'Put the Hat on Architects.',
+  tagline: 'The hat stays on.',
   description: 'A 1/1 2026-supply NFT collection born from the Arc community.',
   twitter: 'https://x.com/ArchitectWifHat',
   twitterHandle: '@ArchitectWifHat',
@@ -12,6 +12,8 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
   { label: 'Community', href: '#community' },
+  { label: 'Collection', href: '/collection' },
+  { label: 'WL Checker', href: '/wl-checker' },
   { label: 'Community meme', href: '/meme' },
   { label: 'FAQ', href: '#faq' },
 ]

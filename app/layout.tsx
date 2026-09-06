@@ -8,12 +8,12 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700
 const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-dm-mono' })
 
 export const metadata: Metadata = {
-  title: 'ArchitectsWifHat — Put the Hat on Architects',
+  title: 'ArchitectsWifHat — The hat stays on',
   description:
     'ArchitectsWifHat is a 1/1 2026-supply NFT collection born from the Arc community. No chosen one. Just an Architect, a hat, and a community.',
   metadataBase: new URL('https://architectswifhat.xyz'),
   openGraph: {
-    title: 'ArchitectsWifHat — Put the Hat on Architects',
+    title: 'ArchitectsWifHat — The hat stays on',
     description: 'A 1/1 2026-supply NFT collection born from the Arc community. You either get it… or you don’t have the hat yet.',
     type: 'website',
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@ArchitectWifHat',
     title: 'ArchitectsWifHat',
-    description: 'Put the hat on Architects.',
+    description: 'The hat stays on.',
   },
   generator: 'v0.app',
 }

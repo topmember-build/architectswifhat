@@ -95,7 +95,7 @@ export function Lore() {
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-arc">The Architects&apos; Chronicle · Epilogue</p>
             <h3 className="mt-4 text-2xl font-bold leading-tight sm:text-3xl">Years from now, people will ask who was there.</h3>
             <p className="mt-4 max-w-3xl leading-7 text-muted-foreground">They will find builders, creators, community leaders, pioneers, and people whose names became part of Arc&apos;s history. Somewhere among those stories, they will notice a ridiculous number of them were wearing the same hat. Nobody will know who put it on first, but they will know what it meant: we were here, we built together, and we wore the hat.</p>
-            <p className="mt-8 border-t border-border/70 pt-6 font-mono text-xs uppercase tracking-[0.22em] text-primary">ArchitectsWifHat · Put the hat on Architects</p>
+            <p className="mt-8 border-t border-border/70 pt-6 font-mono text-xs uppercase tracking-[0.22em] text-primary">ArchitectsWifHat · The hat stays on</p>
           </article>
         </MotionReveal>
       </div>
