@@ -28,8 +28,39 @@ export function Community() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label={`ArchitectsWifHat community clip ${i + 1}`}
+                aria-label={i === 2 ? 'Arc House community clip' : `ArchitectsWifHat community clip ${i + 1}`}
               />
+              {i === 2 && (
+                <div className="border-t border-border/80 p-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-arc">Arc community guide</p>
+                  <h3 className="mt-3 text-xl font-extrabold tracking-tight">Are you on the Arc House?</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    Arc House is the home of the Arc community: a global hub where builders, developers, founders,
+                    creators, and ecosystem participants learn, connect, collaborate, and contribute.
+                  </p>
+                  <div className="mt-5 grid gap-4 text-sm leading-6 text-muted-foreground">
+                    <div>
+                      <h4 className="font-semibold text-foreground">What you can do there</h4>
+                      <p className="mt-1">Join discussions, explore Arc and stablecoin education, watch developer content, attend workshops and meetups, join regional chapters, share your work, and find collaborators.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">How to get started</h4>
+                      <p className="mt-1">Create an account, complete your profile, then participate consistently. Read, watch, discuss, publish, answer questions, join groups, attend eligible events, and help other members.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">Arc House and Architects</h4>
+                      <p className="mt-1">Arc House is where you participate. Architects is how meaningful contribution can be recognized. Everyone starts at Tier 0, and reaching 500 points plus opting into the program can unlock Tier 1 Architect status.</p>
+                    </div>
+                  </div>
+                  <p className="mt-5 border-t border-border/70 pt-4 text-xs leading-5 text-muted-foreground">
+                    Architects points have no monetary value and do not guarantee a token, airdrop, or financial reward. Program requirements and opportunities may change.
+                  </p>
+                  <a href="https://community.arc.io" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-arc hover:underline">
+                    Enter Arc House
+                    <ArrowRight className="size-4" />
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </MotionReveal>
