@@ -8,9 +8,7 @@ import { SITE } from '@/lib/site'
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/55 to-background" />
-      <div className="hero-grid pointer-events-none absolute inset-0 opacity-30" />
-      <div className="pointer-events-none absolute left-1/2 top-24 size-[520px] -translate-x-1/2 rounded-full bg-arc/20 blur-[120px] motion-safe:animate-[pulse_7s_ease-in-out_infinite]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/5 via-transparent to-background/35" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
         <MotionReveal className="relative z-10">

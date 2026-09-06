@@ -36,22 +36,24 @@ const fragmentShader = `
     float light = exp(-length(p - pointer * 0.35) * 1.45);
     float halo = exp(-length(p - vec2(0.36, 0.12)) * 2.0);
 
-    float scan = 0.5 + 0.5 * sin((uv.y + sin(uv.x * 5.0 + t) * 0.018) * u_resolution.y * 0.105);
-    float band = smoothstep(0.2, 0.88, 0.5 + 0.5 * sin(uv.y * 12.0 + sin(uv.x * 7.0 + t) * 1.25));
-    float halftone = 0.5 + 0.5 * sin(uv.x * 115.0 + sin(uv.y * 18.0 + t) * 0.7);
-    float grain = hash(gl_FragCoord.xy + u_time) * 0.06;
-    float vignette = smoothstep(1.15, 0.18, length(p * vec2(0.78, 0.92)));
+    float warpedY = uv.y + sin(uv.x * 9.0 + t * 1.4) * 0.035 + sin(uv.x * 22.0 - t) * 0.012;
+    float scan = smoothstep(0.18, 0.82, 0.5 + 0.5 * sin(warpedY * u_resolution.y * 0.075));
+    float ribbons = smoothstep(0.22, 0.9, 0.5 + 0.5 * sin(warpedY * 17.0 - sin(uv.x * 8.0 + t) * 1.8));
+    vec2 dotGrid = fract((uv + vec2(t * 0.004, 0.0)) * vec2(92.0, 46.0)) - 0.5;
+    float halftone = 1.0 - smoothstep(0.08, 0.34, length(dotGrid * vec2(1.0, 1.7)));
+    float grain = hash(gl_FragCoord.xy + u_time) * 0.08;
+    float vignette = smoothstep(1.2, 0.12, length(p * vec2(0.78, 0.92)));
 
-    vec3 navy = vec3(0.008, 0.025, 0.105);
-    vec3 electric = vec3(0.02, 0.26, 0.9);
-    vec3 blue = vec3(0.08, 0.52, 1.0);
-    vec3 mint = vec3(0.22, 0.55, 0.5);
-    vec3 color = mix(navy, electric, shade * 0.78);
-    color += blue * (light * 0.42 + halo * 0.24);
-    color += mint * band * scan * 0.16;
-    color += blue * halftone * scan * 0.05;
+    vec3 navy = vec3(0.004, 0.018, 0.085);
+    vec3 electric = vec3(0.015, 0.25, 0.92);
+    vec3 blue = vec3(0.08, 0.58, 1.0);
+    vec3 mint = vec3(0.16, 0.47, 0.43);
+    vec3 color = mix(navy, electric, shade * 0.82);
+    color += blue * (light * 0.46 + halo * 0.28);
+    color += mint * ribbons * (0.18 + scan * 0.24);
+    color += blue * halftone * scan * 0.22;
     color += vec3(grain);
-    color *= 0.72 + vignette * 0.5;
+    color *= 0.66 + vignette * 0.62;
 
     gl_FragColor = vec4(color, 1.0);
   }
