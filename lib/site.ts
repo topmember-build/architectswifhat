@@ -30,8 +30,8 @@ export const CHARACTERS = [
 ]
 
 export const VIDEOS = [
-  '/architectswifhat-components/video/awh-1.mp4',
   '/architectswifhat-components/video/awh-2.mp4',
+  '/architectswifhat-components/video/awh-1.mp4',
   '/architectswifhat-components/video/awh-3.mp4',
 ]
 
