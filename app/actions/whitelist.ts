@@ -1,48 +1,94 @@
 'use server'
 
-import { randomUUID } from 'node:crypto'
-import { and, eq } from 'drizzle-orm'
+import { createHash, randomUUID } from 'node:crypto'
+import { headers } from 'next/headers'
+import { sql } from 'drizzle-orm'
 import { db } from '@/lib/db'
 import { whitelistApplications, whitelistTaskProofs } from '@/lib/db/schema'
 
 const TASK_KEYS = ['follow', 'repost', 'tag', 'join'] as const
 const walletPattern = /^0x[a-fA-F0-9]{40}$/
+const MAX_PROOF_LENGTH = 500
+const ALLOWED_PROOF_HOSTS = new Set(['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'])
+const RATE_LIMIT_WINDOW_MINUTES = 10
+const RATE_LIMIT_MAX_REQUESTS = 12
+
+async function enforceRateLimit() {
+  const requestHeaders = await headers()
+  const forwardedFor = requestHeaders.get('x-forwarded-for')?.split(',')[0]?.trim()
+  const address = forwardedFor || requestHeaders.get('x-real-ip') || 'unknown'
+  const key = createHash('sha256').update(address).digest('hex')
+  const result = await db.execute<{ request_count: number }>(sql`
+    INSERT INTO whitelist_rate_limits (key, window_started_at, request_count)
+    VALUES (${key}, now(), 1)
+    ON CONFLICT (key) DO UPDATE SET
+      request_count = CASE WHEN whitelist_rate_limits.window_started_at <= now() - (${RATE_LIMIT_WINDOW_MINUTES} * interval '1 minute') THEN 1 ELSE whitelist_rate_limits.request_count + 1 END,
+      window_started_at = CASE WHEN whitelist_rate_limits.window_started_at <= now() - (${RATE_LIMIT_WINDOW_MINUTES} * interval '1 minute') THEN now() ELSE whitelist_rate_limits.window_started_at END
+    RETURNING request_count
+  `)
+  if (Number(result.rows[0]?.request_count ?? RATE_LIMIT_MAX_REQUESTS + 1) > RATE_LIMIT_MAX_REQUESTS) throw new Error('RATE_LIMITED')
+}
+
+function parseProof(value: string) {
+  if (!value || value.length > MAX_PROOF_LENGTH) return null
+  try {
+    const url = new URL(value)
+    if (url.protocol !== 'https:' || !ALLOWED_PROOF_HOSTS.has(url.hostname.toLowerCase()) || url.username || url.password || url.port) return null
+    return url
+  } catch {
+    return null
+  }
+}
 
 async function verifyProof(taskKey: string, value: string) {
+  const url = parseProof(value)
+  if (!url) return false
+  if (taskKey === 'follow' && url.pathname !== '/' && url.pathname !== '') return false
+  if (taskKey !== 'follow' && url.pathname === '/') return false
   try {
-    const url = new URL(value.trim())
-    if (taskKey === 'follow' || taskKey === 'repost' || taskKey === 'tag') {
-      if (!['x.com', 'twitter.com', 'www.x.com', 'www.twitter.com'].includes(url.hostname.toLowerCase())) return false
-      if (taskKey !== 'follow' && url.pathname === '/') return false
-    }
-    const response = await fetch(url, { method: 'HEAD', redirect: 'manual', signal: AbortSignal.timeout(6000) })
+    const response = await fetch(url, { method: 'HEAD', redirect: 'error', signal: AbortSignal.timeout(5000), headers: { 'User-Agent': 'ArchitectsWifHat-proof-check/1.0' } })
     return response.status >= 200 && response.status < 400
   } catch {
     return false
   }
 }
 
+function normalizeProofs(input: { proofs: Record<string, string> }) {
+  if (!input || typeof input.proofs !== 'object' || input.proofs === null) throw new Error('INVALID_INPUT')
+  return TASK_KEYS.map((key) => ({ key, value: typeof input.proofs[key] === 'string' ? input.proofs[key].trim() : '' }))
+}
+
+async function verifyAllProofs(proofs: { key: typeof TASK_KEYS[number]; value: string }[]) {
+  return Promise.all(proofs.map(async ({ key, value }) => ({ key, verified: await verifyProof(key, value) })))
+}
+
 export async function verifyWhitelistProofs(input: { proofs: Record<string, string> }) {
-  const results = await Promise.all(TASK_KEYS.map(async (key) => ({ key, verified: await verifyProof(key, input.proofs[key] ?? '') })))
+  await enforceRateLimit()
+  const proofs = normalizeProofs(input)
+  if (proofs.some(({ value }) => !value)) throw new Error('MISSING_PROOF')
+  const results = await verifyAllProofs(proofs)
   return { ok: results.every((result) => result.verified), results }
 }
 
 export async function submitWhitelistApplication(input: { wallet: string; proofs: Record<string, string> }) {
+  await enforceRateLimit()
+  if (!input || typeof input.wallet !== 'string' || input.wallet.length > 100) throw new Error('INVALID_INPUT')
   const wallet = input.wallet.trim().toLowerCase()
   if (!walletPattern.test(wallet)) throw new Error('INVALID_WALLET')
-
-  const proofs = TASK_KEYS.map((key) => ({ key, value: input.proofs[key]?.trim() ?? '' }))
+  const proofs = normalizeProofs(input)
   if (proofs.some(({ value }) => !value)) throw new Error('MISSING_PROOF')
-  const verified = await Promise.all(proofs.map(({ key, value }) => verifyProof(key, value)))
-  if (verified.some((ok) => !ok)) throw new Error('UNVERIFIED_PROOF')
+  const verified = await verifyAllProofs(proofs)
+  if (verified.some(({ verified }) => !verified)) throw new Error('UNVERIFIED_PROOF')
 
   const id = randomUUID()
   try {
-    await db.insert(whitelistApplications).values({ id, wallet, status: 'pending' })
+    await db.transaction(async (tx) => {
+      await tx.insert(whitelistApplications).values({ id, wallet, status: 'pending' })
+      await tx.insert(whitelistTaskProofs).values(proofs.map(({ key, value }) => ({ id: randomUUID(), applicationId: id, taskKey: key, proofUrl: value, verified: true, verifiedAt: new Date() })))
+    })
   } catch (error) {
-    if (error instanceof Error && error.message.toLowerCase().includes('unique')) throw new Error('WALLET_ALREADY_SUBMITTED')
+    if (typeof error === 'object' && error !== null && 'code' in error && error.code === '23505') throw new Error('WALLET_ALREADY_SUBMITTED')
     throw error
   }
-  await db.insert(whitelistTaskProofs).values(proofs.map(({ key, value }) => ({ id: randomUUID(), applicationId: id, taskKey: key, proofUrl: value, verified: true, verifiedAt: new Date() })))
   return { ok: true }
 }

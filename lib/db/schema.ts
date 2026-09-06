@@ -55,6 +55,12 @@ export const whitelistApplications = pgTable('whitelist_applications', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 })
 
+export const whitelistRateLimits = pgTable('whitelist_rate_limits', {
+  key: text('key').primaryKey(),
+  windowStartedAt: timestamp('window_started_at').notNull(),
+  requestCount: integer('request_count').notNull().default(0),
+})
+
 export const whitelistTaskProofs = pgTable('whitelist_task_proofs', {
   id: text('id').primaryKey(),
   applicationId: text('application_id').notNull(),
