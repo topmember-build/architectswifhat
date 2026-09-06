@@ -17,7 +17,7 @@ export function SiteFooter() {
                 Architects<span className="text-arc">Wif</span>Hat
               </span>
             </div>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">{SITE.tagline} A community NFT collection and meme for everyone who showed up, stayed, and built.</p>
+            <p className="mt-4 text-sm leading-6 text-muted-foreground">{SITE.tagline} A 1/1 2026-supply NFT collection born from the Arc community for everyone who showed up, stayed, and built.</p>
           </div>
 
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">

@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Poppins, DM_Mono } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
+import { ShadeBackground } from '@/components/shade-background'
 import './globals.css'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-poppins' })
@@ -9,11 +10,11 @@ const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '
 export const metadata: Metadata = {
   title: 'ArchitectsWifHat — Put the Hat on Architects',
   description:
-    'ArchitectsWifHat is a community NFT collection and meme for everyone who showed up, stayed, and built. No chosen one. Just an Architect, a hat, and a community.',
+    'ArchitectsWifHat is a 1/1 2026-supply NFT collection born from the Arc community. No chosen one. Just an Architect, a hat, and a community.',
   metadataBase: new URL('https://architectswifhat.xyz'),
   openGraph: {
     title: 'ArchitectsWifHat — Put the Hat on Architects',
-    description: 'A community NFT collection and meme. You either get it… or you don’t have the hat yet.',
+    description: 'A 1/1 2026-supply NFT collection born from the Arc community. You either get it… or you don’t have the hat yet.',
     type: 'website',
   },
   twitter: {
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#1a2547',
+  themeColor: '#03091d',
   width: 'device-width',
   initialScale: 1,
 }
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`bg-background ${poppins.variable} ${dmMono.variable}`}>
       <body className="font-sans">
+        <ShadeBackground />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

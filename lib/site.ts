@@ -1,6 +1,7 @@
 export const SITE = {
   name: 'ArchitectsWifHat',
   tagline: 'Put the Hat on Architects.',
+  description: 'A 1/1 2026-supply NFT collection born from the Arc community.',
   twitter: 'https://x.com/ArchitectWifHat',
   twitterHandle: '@ArchitectWifHat',
   supply: 2026,
@@ -10,8 +11,8 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
-  { label: 'Collection', href: '#collection' },
   { label: 'Community', href: '#community' },
+  { label: 'Community meme', href: '/meme' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -29,24 +30,15 @@ export const CHARACTERS = [
 ]
 
 export const VIDEOS = [
-  '/architectswifhat-components/video/awh-1.mp4',
   '/architectswifhat-components/video/awh-2.mp4',
+  '/architectswifhat-components/video/awh-1.mp4',
   '/architectswifhat-components/video/awh-3.mp4',
-]
-
-export const TRAIT_CATEGORIES = [
-  { name: 'Bodies', count: 10, sample: '/architectswifhat-components/bodies/body_01_standing.png' },
-  { name: 'Clothing', count: 10, sample: '/architectswifhat-components/clothing/clothing_01_blue_arc.png' },
-  { name: 'Caps', count: 10, sample: '/architectswifhat-components/caps/cap_01_burgundy_arc.png' },
-  { name: 'Expressions', count: 10, sample: '/architectswifhat-components/expressions/expression_01_grin.png' },
-  { name: 'Accessories', count: 10, sample: '/architectswifhat-components/accessories/accessory_02_sunglasses.png' },
-  { name: 'Backgrounds', count: 10, sample: '/architectswifhat-components/backgrounds/background_01_sunset_beach.png' },
 ]
 
 export const FAQS = [
   {
     q: 'What is ArchitectsWifHat?',
-    a: 'A community NFT collection and meme for everyone who showed up, stayed, built, and watched Arc become what it is today. No complicated promises. No chosen one. Just an Architect, a hat, and a community.',
+    a: 'A 1/1 2026-supply NFT collection and meme born from the Arc community for everyone who showed up, stayed, built, and watched Arc become what it is today. No complicated promises. No chosen one. Just an Architect, a hat, and a community.',
   },
   {
     q: 'Who put the hat on Architects?',
@@ -58,7 +50,7 @@ export const FAQS = [
   },
   {
     q: 'What is the supply?',
-    a: '2026 hats. Each one is an Architect built from an interchangeable trait system — bodies, clothing, caps, expressions, accessories, and backgrounds.',
+    a: 'The collection is a 1/1 supply of 2,026 ArchitectsWifHats — one unique ArchitectWifHat for each piece, born from the Arc community.',
   },
   {
     q: 'Do I need the hat?',

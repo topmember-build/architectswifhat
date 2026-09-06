@@ -37,34 +37,38 @@
 
 :root {
   color-scheme: dark;
-  --background: oklch(0.19 0.045 260);
-  --foreground: oklch(0.95 0.014 85);
-  --card: oklch(0.24 0.05 262);
-  --card-foreground: oklch(0.95 0.014 85);
-  --popover: oklch(0.22 0.05 262);
-  --popover-foreground: oklch(0.95 0.014 85);
-  --primary: oklch(0.45 0.13 18);
-  --primary-foreground: oklch(0.96 0.014 85);
-  --secondary: oklch(0.28 0.05 262);
-  --secondary-foreground: oklch(0.95 0.014 85);
-  --muted: oklch(0.3 0.045 262);
-  --muted-foreground: oklch(0.72 0.03 262);
-  --accent: oklch(0.45 0.13 18);
-  --accent-foreground: oklch(0.96 0.014 85);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.7 0.1 250);
-  --burgundy: oklch(0.45 0.13 18);
-  --arc: oklch(0.78 0.09 245);
-  --gold: oklch(0.82 0.13 82);
-  --bone: oklch(0.93 0.02 88);
+  --background: oklch(0.13 0.012 265);
+  --foreground: oklch(0.98 0.012 95);
+  --card: oklch(0.11 0.035 255 / 94%);
+  --card-foreground: oklch(0.98 0.012 95);
+  --popover: oklch(0.1 0.035 255 / 98%);
+  --popover-foreground: oklch(0.98 0.012 95);
+  --primary: oklch(0.78 0.17 72);
+  --primary-foreground: oklch(0.13 0.035 255);
+  --secondary: oklch(0.16 0.04 255 / 92%);
+  --secondary-foreground: oklch(0.98 0.012 95);
+  --muted: oklch(0.16 0.04 255 / 90%);
+  --muted-foreground: oklch(0.87 0.035 210);
+  --accent: oklch(0.78 0.17 72);
+  --accent-foreground: oklch(0.13 0.035 255);
+  --border: oklch(0.86 0.08 205 / 38%);
+  --input: oklch(0.86 0.08 205 / 45%);
+  --ring: oklch(0.86 0.12 190);
+  --burgundy: oklch(0.62 0.2 25);
+  --arc: oklch(0.86 0.12 190);
+  --gold: oklch(0.86 0.17 82);
+  --bone: oklch(0.98 0.012 95);
   --radius: 0.8rem;
 }
 
 * { @apply border-border outline-ring/50; }
 html { background: var(--background); }
-body { @apply bg-background text-foreground antialiased; }
+body { @apply bg-transparent text-foreground antialiased; }
 button { cursor: pointer; }
+
+.shade-background { position: fixed; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; background-color: #0753d6; background-image: radial-gradient(ellipse at 52% 42%, rgba(38, 141, 255, .9) 0%, rgba(15, 75, 210, .82) 38%, rgba(2, 19, 78, .98) 100%), repeating-linear-gradient(0deg, rgba(166, 232, 218, .16) 0 1px, transparent 1px 7px), repeating-linear-gradient(90deg, rgba(4, 16, 66, .16) 0 1px, transparent 1px 8px); background-blend-mode: screen, overlay, multiply; animation: throw-shade-drift 18s ease-in-out infinite alternate; }
+@keyframes throw-shade-drift { from { filter: hue-rotate(0deg) saturate(1); background-position: 50% 50%, 0 0, 0 0; } to { filter: hue-rotate(8deg) saturate(1.15); background-position: 54% 46%, 0 12px, 10px 0; } }
+body > :not(.shade-background) { position: relative; z-index: 1; }
 ::selection { background: var(--burgundy); color: var(--foreground); }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -73,3 +77,18 @@ button { cursor: pointer; }
 @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .awh-marquee { animation: marquee 30s linear infinite; }
+
+.hero-grid {
+  background-image: linear-gradient(to right, color-mix(in oklch, var(--arc) 12%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklch, var(--arc) 12%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
+}
+.motion-reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.8,.2,1); transition-delay: var(--motion-delay, 0ms); }
+.motion-reveal[data-revealed='true'] { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .awh-marquee { animation: none; }
+  .shade-background { animation: none; }
+  .motion-reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
