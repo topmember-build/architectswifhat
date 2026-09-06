@@ -35,14 +35,23 @@ const fragmentShader = `
     float shade = smoothstep(0.14, 0.9, field);
     float light = exp(-length(p - pointer * 0.35) * 1.45);
     float halo = exp(-length(p - vec2(0.36, 0.12)) * 2.0);
-    float grain = hash(gl_FragCoord.xy + u_time) * 0.035;
 
-    vec3 navy = vec3(0.015, 0.035, 0.09);
-    vec3 electric = vec3(0.05, 0.24, 0.75);
-    vec3 cobalt = vec3(0.15, 0.42, 0.95);
-    vec3 color = mix(navy, electric, shade * 0.72);
-    color += cobalt * (light * 0.36 + halo * 0.18);
+    float scan = 0.5 + 0.5 * sin((uv.y + sin(uv.x * 5.0 + t) * 0.018) * u_resolution.y * 0.105);
+    float band = smoothstep(0.2, 0.88, 0.5 + 0.5 * sin(uv.y * 12.0 + sin(uv.x * 7.0 + t) * 1.25));
+    float halftone = 0.5 + 0.5 * sin(uv.x * 115.0 + sin(uv.y * 18.0 + t) * 0.7);
+    float grain = hash(gl_FragCoord.xy + u_time) * 0.06;
+    float vignette = smoothstep(1.15, 0.18, length(p * vec2(0.78, 0.92)));
+
+    vec3 navy = vec3(0.008, 0.025, 0.105);
+    vec3 electric = vec3(0.02, 0.26, 0.9);
+    vec3 blue = vec3(0.08, 0.52, 1.0);
+    vec3 mint = vec3(0.22, 0.55, 0.5);
+    vec3 color = mix(navy, electric, shade * 0.78);
+    color += blue * (light * 0.42 + halo * 0.24);
+    color += mint * band * scan * 0.16;
+    color += blue * halftone * scan * 0.05;
     color += vec3(grain);
+    color *= 0.72 + vignette * 0.5;
 
     gl_FragColor = vec4(color, 1.0);
   }
