@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Line, OrbitControls, Points, PointMaterial } from '@react-three/drei'
+import { Line, OrbitControls, Points, PointMaterial, Text } from '@react-three/drei'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Group, Points as ThreePoints } from 'three'
 import * as THREE from 'three'
@@ -32,7 +32,7 @@ function latLonToVector(lat: number, lon: number, radius = 1.345) {
 }
 
 function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
-  const pulse = useRef<THREE.Mesh>(null)
+  const pulses = useRef<Array<THREE.Mesh | null>>([])
   const countryVectors = useMemo(() => COUNTRIES.map(({ lat, lon }) => latLonToVector(lat, lon)), [])
   const arcs = useMemo(() => countryVectors.map((start, index) => {
     const end = countryVectors[(index + 1) % countryVectors.length]
@@ -47,14 +47,20 @@ function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
   }), [countryVectors])
 
   useFrame(({ clock }) => {
-    if (!pulse.current || reducedMotion) return
-    const t = (clock.elapsedTime * 0.7) % 1
-    const arcIndex = Math.floor(t * arcs.length)
-    const progress = (t * arcs.length) % 1
-    const arc = arcs[arcIndex]
-    const point = arc[Math.min(Math.floor(progress * arc.length), arc.length - 1)]
-    pulse.current.position.copy(point)
-    pulse.current.scale.setScalar(0.8 + Math.sin(clock.elapsedTime * 12) * 0.25)
+    if (reducedMotion) return
+    const time = clock.elapsedTime * 0.8
+    pulses.current.forEach((pulse, index) => {
+      if (!pulse) return
+      const trail = index * 0.18
+      const t = (time - trail) % 1
+      const safeT = t < 0 ? t + 1 : t
+      const arcIndex = Math.floor(safeT * arcs.length)
+      const progress = (safeT * arcs.length) % 1
+      const arc = arcs[arcIndex]
+      const point = arc[Math.min(Math.floor(progress * arc.length), arc.length - 1)]
+      pulse.position.copy(point)
+      pulse.scale.setScalar(0.85 + Math.sin(clock.elapsedTime * 18 + index) * 0.3)
+    })
   })
 
   return (
@@ -62,16 +68,36 @@ function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
       {arcs.map((points, index) => (
         <Line key={index} points={points} color={index % 2 ? '#8c3046' : '#b8d7ff'} transparent opacity={reducedMotion ? 0.35 : 0.7} lineWidth={1.4} />
       ))}
-      {countryVectors.map((position, index) => (
-        <mesh key={COUNTRIES[index].name} position={position}>
-          <sphereGeometry args={[0.032, 10, 10]} />
-          <meshBasicMaterial color={index % 2 ? '#8c3046' : '#d9e9ff'} />
+      {countryVectors.map((position, index) => {
+        const labelPosition = position.clone().normalize().multiplyScalar(1.46)
+        return (
+          <group key={COUNTRIES[index].name}>
+            <mesh position={position}>
+              <sphereGeometry args={[0.045, 12, 12]} />
+              <meshBasicMaterial color={index % 2 ? '#8c3046' : '#d9e9ff'} toneMapped={false} />
+            </mesh>
+            <Text
+              position={labelPosition}
+              fontSize={0.075}
+              color="#e8f2ff"
+              anchorX="center"
+              anchorY="middle"
+              outlineWidth={0.012}
+              outlineColor="#101a32"
+              depthOffset={-2}
+              renderOrder={3}
+            >
+              {COUNTRIES[index].name.toUpperCase()}
+            </Text>
+          </group>
+        )
+      })}
+      {Array.from({ length: 4 }, (_, index) => (
+        <mesh key={index} position={arcs[index]?.[0] ?? countryVectors[0]} ref={(node) => { pulses.current[index] = node }}>
+          <sphereGeometry args={[0.075, 12, 12]} />
+          <meshBasicMaterial color="#ffffff" transparent opacity={0.95} toneMapped={false} />
         </mesh>
       ))}
-      <mesh ref={pulse} position={countryVectors[0]}>
-        <sphereGeometry args={[0.06, 12, 12]} />
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.9} />
-      </mesh>
     </group>
   )
 }
