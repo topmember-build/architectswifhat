@@ -71,14 +71,14 @@ export function Hero() {
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="flex items-center gap-6">
-                Put the hat on Architects <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+                The hat stays on <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>
           <div className="awh-marquee flex shrink-0 items-center gap-6 whitespace-nowrap pr-6 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground" aria-hidden="true">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="flex items-center gap-6">
-                Put the hat on Architects <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
+                The hat stays on <span className="text-primary">✦</span> ArchitectsWifHat <span className="text-primary">✦</span>
               </span>
             ))}
           </div>
