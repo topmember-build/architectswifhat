@@ -1,15 +1,18 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { MotionReveal } from '@/components/motion-reveal'
 import { SITE } from '@/lib/site'
 
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[oklch(0.26_0.06_258)] via-background to-background" />
-      <div className="pointer-events-none absolute left-1/2 top-24 size-[520px] -translate-x-1/2 rounded-full bg-arc/20 blur-[120px]" />
+      <div className="hero-grid pointer-events-none absolute inset-0 opacity-30" />
+      <div className="pointer-events-none absolute left-1/2 top-24 size-[520px] -translate-x-1/2 rounded-full bg-arc/20 blur-[120px] motion-safe:animate-[pulse_7s_ease-in-out_infinite]" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
-        <div className="awh-enter">
+        <MotionReveal className="relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
             <span className="size-1.5 rounded-full bg-arc" /> Community NFT · Built on {SITE.chain}
           </span>
@@ -39,18 +42,20 @@ export function Hero() {
               <dd className="mt-1 text-2xl font-bold">0</dd>
             </div>
           </dl>
-        </div>
+        </MotionReveal>
 
-        <div className="awh-enter relative">
+        <MotionReveal className="relative" delay={140}>
           <div className="absolute -inset-4 rounded-[2rem] bg-arc/10 blur-2xl" />
           <div className="relative overflow-hidden rounded-[1.75rem] border border-border shadow-2xl shadow-black/40">
-            <img
+            <Image
               src="/architectswifhat-components/hero/arc-hero.png"
+              width={1200}
+              height={1200}
               alt="An Architect wearing the burgundy Arc cap and cream Arc tee, arms crossed in front of the Arc logo"
               className="aspect-square w-full object-cover"
             />
           </div>
-        </div>
+        </MotionReveal>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/60 py-3 backdrop-blur-sm">

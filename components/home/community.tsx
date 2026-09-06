@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { MotionReveal } from '@/components/motion-reveal'
 import { SITE, VIDEOS } from '@/lib/site'
 
 export function Community() {
@@ -16,12 +17,12 @@ export function Community() {
           </a>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <MotionReveal className="mt-12 grid gap-4 md:grid-cols-3">
           {VIDEOS.map((src, i) => (
-            <div key={src} className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div key={src} className="group overflow-hidden rounded-2xl border border-border bg-card transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10">
               <video
                 src={src}
-                className="aspect-square w-full object-cover"
+                className="aspect-square w-full object-cover transition duration-700 group-hover:scale-105"
                 autoPlay
                 muted
                 loop
@@ -31,9 +32,9 @@ export function Community() {
               />
             </div>
           ))}
-        </div>
+        </MotionReveal>
 
-        <div className="mt-14 overflow-hidden rounded-3xl border border-primary/40 bg-primary/10">
+        <MotionReveal className="mt-14 overflow-hidden rounded-3xl border border-primary/40 bg-primary/10" delay={160}>
           <div className="flex flex-col items-center gap-6 px-6 py-14 text-center sm:px-12">
             <h3 className="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to earn your hat?</h3>
             <p className="max-w-xl text-pretty leading-7 text-muted-foreground">
@@ -45,7 +46,7 @@ export function Community() {
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
-        </div>
+        </MotionReveal>
       </div>
     </section>
   )
