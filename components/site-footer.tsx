@@ -24,9 +24,17 @@ export function SiteFooter() {
             <nav className="flex flex-col gap-3">
               <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Explore</p>
               {NAV_LINKS.map((link) => (
-                <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  {link.label}
-                </a>
+                <span key={link.href}>
+                  {link.href.startsWith('/') ? (
+                    <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {link.label}
+                    </a>
+                  )}
+                </span>
               ))}
             </nav>
             <nav className="flex flex-col gap-3">

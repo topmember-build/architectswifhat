@@ -12,6 +12,8 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
   { label: 'Community', href: '#community' },
+  { label: 'Collection', href: '/collection' },
+  { label: 'WL Checker', href: '/wl-checker' },
   { label: 'Community meme', href: '/meme' },
   { label: 'FAQ', href: '#faq' },
 ]
