@@ -1,10 +1,80 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Points, PointMaterial } from '@react-three/drei'
+import { Line, OrbitControls, Points, PointMaterial } from '@react-three/drei'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Group, Points as ThreePoints } from 'three'
 import * as THREE from 'three'
+
+type Country = { name: string; lat: number; lon: number }
+
+const COUNTRIES: Country[] = [
+  { name: 'Nigeria', lat: 9.1, lon: 8.7 },
+  { name: 'India', lat: 20.6, lon: 78.9 },
+  { name: 'Singapore', lat: 1.35, lon: 103.8 },
+  { name: 'Brazil', lat: -10.8, lon: -52.9 },
+  { name: 'France', lat: 46.2, lon: 2.2 },
+  { name: 'Argentina', lat: -38.4, lon: -63.6 },
+  { name: 'Turkey', lat: 38.9, lon: 35.2 },
+  { name: 'Bangladesh', lat: 23.7, lon: 90.4 },
+  { name: 'Vietnam', lat: 14.1, lon: 108.3 },
+  { name: 'Portugal', lat: 39.4, lon: -8.2 },
+]
+
+function latLonToVector(lat: number, lon: number, radius = 1.345) {
+  const latitude = THREE.MathUtils.degToRad(lat)
+  const longitude = THREE.MathUtils.degToRad(lon)
+  return new THREE.Vector3(
+    radius * Math.cos(latitude) * Math.cos(longitude),
+    radius * Math.sin(latitude),
+    -radius * Math.cos(latitude) * Math.sin(longitude),
+  )
+}
+
+function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
+  const pulse = useRef<THREE.Mesh>(null)
+  const countryVectors = useMemo(() => COUNTRIES.map(({ lat, lon }) => latLonToVector(lat, lon)), [])
+  const arcs = useMemo(() => countryVectors.map((start, index) => {
+    const end = countryVectors[(index + 1) % countryVectors.length]
+    const points = []
+    for (let step = 0; step <= 24; step += 1) {
+      const progress = step / 24
+      const point = start.clone().lerp(end, progress).normalize()
+      point.multiplyScalar(1.345 + Math.sin(Math.PI * progress) * 0.16)
+      points.push(point)
+    }
+    return points
+  }), [countryVectors])
+
+  useFrame(({ clock }) => {
+    if (!pulse.current || reducedMotion) return
+    const t = (clock.elapsedTime * 0.7) % 1
+    const arcIndex = Math.floor(t * arcs.length)
+    const progress = (t * arcs.length) % 1
+    const arc = arcs[arcIndex]
+    const point = arc[Math.min(Math.floor(progress * arc.length), arc.length - 1)]
+    pulse.current.position.copy(point)
+    pulse.current.scale.setScalar(0.8 + Math.sin(clock.elapsedTime * 12) * 0.25)
+  })
+
+  return (
+    <group>
+      {arcs.map((points, index) => (
+        <Line key={index} points={points} color={index % 2 ? '#8c3046' : '#b8d7ff'} transparent opacity={reducedMotion ? 0.35 : 0.7} lineWidth={1.4} />
+      ))}
+      {countryVectors.map((position, index) => (
+        <mesh key={COUNTRIES[index].name} position={position}>
+          <sphereGeometry args={[0.032, 10, 10]} />
+          <meshBasicMaterial color={index % 2 ? '#8c3046' : '#d9e9ff'} />
+        </mesh>
+      ))}
+      <mesh ref={pulse} position={countryVectors[0]}>
+        <sphereGeometry args={[0.06, 12, 12]} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.9} />
+      </mesh>
+    </group>
+  )
+}
 
 function SphereField({ reducedMotion }: { reducedMotion: boolean }) {
   const group = useRef<Group>(null)
@@ -41,6 +111,7 @@ function SphereField({ reducedMotion }: { reducedMotion: boolean }) {
       <Points ref={points} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial transparent color="#d9e9ff" size={0.018} sizeAttenuation depthWrite={false} />
       </Points>
+      <ElectricNetwork reducedMotion={reducedMotion} />
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.56, 0.008, 8, 96]} />
         <meshBasicMaterial color="#b8d7ff" transparent opacity={0.28} />
