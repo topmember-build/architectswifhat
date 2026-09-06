@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Check, ExternalLink } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { SITE } from '@/lib/site'
 
-const OPENSEA_LOGO = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Logo-TDq9o5VT39506EpB2tsHYTgVI8qoPm.jpg'
+const OPENSEA_LOGO = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Emblem-500x281-rrThHycdLLeEJxBSQNPvUVUgx0SVzM.png'
 
 const phases = [
   { name: 'Team', label: '01', description: 'The builders behind ArchitectsWifHat get the first look.', supply: 'TBA' },
@@ -31,10 +31,10 @@ export default function CollectionPage() {
                 A 1/1 2026-supply NFT collection and lore-driven meme brand born from the Arc community. Every Architect has a story. Every hat means you were here.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="https://opensea.io/" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-transform hover:-translate-y-0.5">
+                <div className="inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">
                   <Image src={OPENSEA_LOGO} alt="OpenSea" width={22} height={22} className="rounded-full object-cover" />
-                  Mint on OpenSea <ArrowUpRight className="size-4" />
-                </a>
+                  Coming soon
+                </div>
                 <Link href="/wl-checker" className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold transition-colors hover:bg-secondary">
                   Check your WL status
                 </Link>
@@ -70,7 +70,7 @@ export default function CollectionPage() {
         <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
             <div><p className="font-mono text-[11px] uppercase tracking-[0.22em] text-arc">Built on Arc</p><h2 className="mt-4 text-3xl font-black tracking-[-0.04em] sm:text-5xl">A community artifact, not just a profile picture.</h2></div>
-            <div className="grid gap-4 sm:grid-cols-2"><div className="rounded-2xl border border-border p-6"><p className="text-lg font-bold">Lore first</p><p className="mt-3 text-sm leading-6 text-muted-foreground">The hat is a shared signal for the people who showed up, stayed, and built alongside Arc.</p></div><div className="rounded-2xl border border-border p-6"><p className="text-lg font-bold">OpenSea mint</p><p className="mt-3 text-sm leading-6 text-muted-foreground">The official mint destination will be announced here when the collection is ready.</p><a href="https://opensea.io/" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-arc hover:underline">Visit OpenSea <ExternalLink className="size-3.5" /></a></div></div>
+            <div className="grid gap-4 sm:grid-cols-2"><div className="rounded-2xl border border-border p-6"><p className="text-lg font-bold">Lore first</p><p className="mt-3 text-sm leading-6 text-muted-foreground">The hat is a shared signal for the people who showed up, stayed, and built alongside Arc.</p></div><div className="rounded-2xl border border-border p-6"><p className="text-lg font-bold">OpenSea mint</p><p className="mt-3 text-sm leading-6 text-muted-foreground">The official mint destination will be announced here when the collection is ready.</p><p className="mt-5 text-sm font-semibold text-arc">Coming soon</p></div></div>
           </div>
         </section>
       </main>
