@@ -59,7 +59,7 @@ function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
       const arc = arcs[arcIndex]
       const point = arc[Math.min(Math.floor(progress * arc.length), arc.length - 1)]
       pulse.position.copy(point)
-      pulse.scale.setScalar(0.85 + Math.sin(clock.elapsedTime * 18 + index) * 0.3)
+      pulse.scale.setScalar(0.68 + Math.sin(clock.elapsedTime * 18 + index) * 0.16)
     })
   })
 
@@ -73,17 +73,17 @@ function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
         return (
           <group key={COUNTRIES[index].name}>
             <mesh position={position}>
-              <sphereGeometry args={[0.045, 12, 12]} />
+              <sphereGeometry args={[0.032, 10, 10]} />
               <meshBasicMaterial color={index % 2 ? '#8c3046' : '#d9e9ff'} toneMapped={false} />
             </mesh>
             <Text
               position={labelPosition}
-              fontSize={0.075}
-              color="#e8f2ff"
+              fontSize={0.048}
+              color="#b8d7ff"
               anchorX="center"
               anchorY="middle"
-              outlineWidth={0.012}
-              outlineColor="#101a32"
+              outlineWidth={0.006}
+              outlineColor="#172541"
               depthOffset={-2}
               renderOrder={3}
             >
@@ -94,7 +94,7 @@ function ElectricNetwork({ reducedMotion }: { reducedMotion: boolean }) {
       })}
       {Array.from({ length: 4 }, (_, index) => (
         <mesh key={index} position={arcs[index]?.[0] ?? countryVectors[0]} ref={(node) => { pulses.current[index] = node }}>
-          <sphereGeometry args={[0.075, 12, 12]} />
+          <sphereGeometry args={[0.042, 10, 10]} />
           <meshBasicMaterial color="#ffffff" transparent opacity={0.95} toneMapped={false} />
         </mesh>
       ))}
