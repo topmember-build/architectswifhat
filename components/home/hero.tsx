@@ -15,14 +15,14 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
         <MotionReveal className="relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
-            <span className="size-1.5 rounded-full bg-arc" /> Community NFT · Built on {SITE.chain}
+            <span className="size-1.5 rounded-full bg-arc" /> 1/1 2026 supply · Born from {SITE.chain}
           </span>
           <h1 className="mt-6 text-balance text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
             Put the Hat on <span className="text-primary">Architects</span>.
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
             Nobody knows who put the hat on Architects. Nobody questioned it. They just started wearing it. This is the
-            collection for everyone who showed up, stayed, and built.
+            1/1 collection for everyone who showed up, stayed, and built with the Arc community.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link href="/whitelist" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/25 transition-transform hover:-translate-y-0.5">

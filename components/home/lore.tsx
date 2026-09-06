@@ -33,7 +33,7 @@ export function Lore() {
             A community, a blueprint, and a hat.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-pretty leading-7 text-muted-foreground">
-            ArchitectsWifHat is the visual history of the Arc community—the personalities, pioneers, builders, leaders, creators, and culture that helped shape it.
+            ArchitectsWifHat is a 1/1 2026-supply NFT collection born from the Arc community—the personalities, pioneers, builders, leaders, creators, and culture that helped shape it.
           </p>
         </MotionReveal>
 

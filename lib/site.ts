@@ -1,6 +1,7 @@
 export const SITE = {
   name: 'ArchitectsWifHat',
   tagline: 'Put the Hat on Architects.',
+  description: 'A 1/1 2026-supply NFT collection born from the Arc community.',
   twitter: 'https://x.com/ArchitectWifHat',
   twitterHandle: '@ArchitectWifHat',
   supply: 2026,
@@ -37,7 +38,7 @@ export const VIDEOS = [
 export const FAQS = [
   {
     q: 'What is ArchitectsWifHat?',
-    a: 'A community NFT collection and meme for everyone who showed up, stayed, built, and watched Arc become what it is today. No complicated promises. No chosen one. Just an Architect, a hat, and a community.',
+    a: 'A 1/1 2026-supply NFT collection and meme born from the Arc community for everyone who showed up, stayed, built, and watched Arc become what it is today. No complicated promises. No chosen one. Just an Architect, a hat, and a community.',
   },
   {
     q: 'Who put the hat on Architects?',
@@ -49,7 +50,7 @@ export const FAQS = [
   },
   {
     q: 'What is the supply?',
-    a: 'The supply is 2026 ArchitectsWifHats — Architects who Put the hat on.',
+    a: 'The collection is a 1/1 supply of 2,026 ArchitectsWifHats — one unique ArchitectWifHat for each piece, born from the Arc community.',
   },
   {
     q: 'Do I need the hat?',

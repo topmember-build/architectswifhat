@@ -10,11 +10,11 @@ const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '
 export const metadata: Metadata = {
   title: 'ArchitectsWifHat — Put the Hat on Architects',
   description:
-    'ArchitectsWifHat is a community NFT collection and meme for everyone who showed up, stayed, and built. No chosen one. Just an Architect, a hat, and a community.',
+    'ArchitectsWifHat is a 1/1 2026-supply NFT collection born from the Arc community. No chosen one. Just an Architect, a hat, and a community.',
   metadataBase: new URL('https://architectswifhat.xyz'),
   openGraph: {
     title: 'ArchitectsWifHat — Put the Hat on Architects',
-    description: 'A community NFT collection and meme. You either get it… or you don’t have the hat yet.',
+    description: 'A 1/1 2026-supply NFT collection born from the Arc community. You either get it… or you don’t have the hat yet.',
     type: 'website',
   },
   twitter: {
