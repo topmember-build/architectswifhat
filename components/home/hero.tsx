@@ -35,10 +35,6 @@ export function Hero() {
               <dd className="mt-1 text-2xl font-bold">{SITE.supply.toLocaleString()}</dd>
             </div>
             <div>
-              <dt className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Traits</dt>
-              <dd className="mt-1 text-2xl font-bold">60</dd>
-            </div>
-            <div>
               <dt className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Chosen ones</dt>
               <dd className="mt-1 text-2xl font-bold">0</dd>
             </div>

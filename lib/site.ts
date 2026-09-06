@@ -10,7 +10,6 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: 'Lore', href: '#lore' },
-  { label: 'Collection', href: '#collection' },
   { label: 'Community', href: '#community' },
   { label: 'FAQ', href: '#faq' },
 ]
@@ -34,15 +33,6 @@ export const VIDEOS = [
   '/architectswifhat-components/video/awh-3.mp4',
 ]
 
-export const TRAIT_CATEGORIES = [
-  { name: 'Bodies', count: 10, sample: '/architectswifhat-components/bodies/body_01_standing.png' },
-  { name: 'Clothing', count: 10, sample: '/architectswifhat-components/clothing/clothing_01_blue_arc.png' },
-  { name: 'Caps', count: 10, sample: '/architectswifhat-components/caps/cap_01_burgundy_arc.png' },
-  { name: 'Expressions', count: 10, sample: '/architectswifhat-components/expressions/expression_01_grin.png' },
-  { name: 'Accessories', count: 10, sample: '/architectswifhat-components/accessories/accessory_02_sunglasses.png' },
-  { name: 'Backgrounds', count: 10, sample: '/architectswifhat-components/backgrounds/background_01_sunset_beach.png' },
-]
-
 export const FAQS = [
   {
     q: 'What is ArchitectsWifHat?',
@@ -58,7 +48,7 @@ export const FAQS = [
   },
   {
     q: 'What is the supply?',
-    a: '2026 hats. Each one is an Architect built from an interchangeable trait system — bodies, clothing, caps, expressions, accessories, and backgrounds.',
+    a: '2026 hats for the community that showed up, stayed, built, and watched Arc become what it is today.',
   },
   {
     q: 'Do I need the hat?',
