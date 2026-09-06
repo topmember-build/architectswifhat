@@ -15,8 +15,8 @@ const RATE_LIMIT_MAX_REQUESTS = 12
 
 async function enforceRateLimit() {
   const requestHeaders = await headers()
-  const forwardedFor = requestHeaders.get('x-forwarded-for')?.split(',')[0]?.trim()
-  const address = forwardedFor || requestHeaders.get('x-real-ip') || 'unknown'
+  const platformAddress = requestHeaders.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
+  const address = platformAddress || requestHeaders.get('x-real-ip') || 'unknown'
   const key = createHash('sha256').update(address).digest('hex')
   const result = await db.execute<{ request_count: number }>(sql`
     INSERT INTO whitelist_rate_limits (key, window_started_at, request_count)
@@ -43,11 +43,15 @@ function parseProof(value: string) {
 async function verifyProof(taskKey: string, value: string) {
   const url = parseProof(value)
   if (!url) return false
-  if (taskKey === 'follow' && url.pathname !== '/' && url.pathname !== '') return false
-  if (taskKey !== 'follow' && url.pathname === '/') return false
+  if (url.pathname === '/' || url.pathname === '') return false
   try {
-    const response = await fetch(url, { method: 'HEAD', redirect: 'error', signal: AbortSignal.timeout(5000), headers: { 'User-Agent': 'ArchitectsWifHat-proof-check/1.0' } })
-    return response.status >= 200 && response.status < 400
+    const requestInit = { redirect: 'error' as const, signal: AbortSignal.timeout(5000), headers: { 'User-Agent': 'ArchitectsWifHat-proof-check/1.0' } }
+    const headResponse = await fetch(url, { ...requestInit, method: 'HEAD' })
+    if (headResponse.status >= 200 && headResponse.status < 400) return true
+    if (![403, 405, 406, 429, 500, 501, 502, 503].includes(headResponse.status)) return false
+    const getResponse = await fetch(url, { ...requestInit, method: 'GET' })
+    await getResponse.body?.cancel()
+    return getResponse.status >= 200 && getResponse.status < 400
   } catch {
     return false
   }
