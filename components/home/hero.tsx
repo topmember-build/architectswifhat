@@ -51,6 +51,7 @@ export function Hero() {
               src="/architectswifhat-components/hero/arc-hero.png"
               width={1200}
               height={1200}
+              priority
               alt="An Architect wearing the burgundy Arc cap and cream Arc tee, arms crossed in front of the Arc logo"
               className="aspect-square w-full object-cover"
             />
