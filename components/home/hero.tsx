@@ -43,6 +43,9 @@ export function Hero() {
               <dd className="mt-1 text-2xl font-bold">0</dd>
             </div>
           </dl>
+          <p className="mt-4 max-w-md text-xs leading-5 text-muted-foreground">
+            <span className="font-semibold text-foreground">Chosen ones: 0</span> — there is no single hero, elite group, or final Architect. ArchitectsWifHat is for everyone who shows up, contributes, and helps build Arc.
+          </p>
         </MotionReveal>
 
         <MotionReveal className="relative" delay={140}>
