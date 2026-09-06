@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { NAV_LINKS, SITE } from '@/lib/site'
 import { ArcMark } from '@/components/arc-mark'
@@ -49,9 +50,25 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} ArchitectsWifHat. The hat stays on.</p>
-          <p>You either get it… or you don&apos;t have the hat yet.</p>
+        <div className="mt-10 flex flex-col gap-5 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="inline-flex items-center gap-2.5 rounded-xl border border-primary/30 bg-primary/10 px-3 py-2 shadow-md shadow-primary/10">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Emblem-500x281-rrThHycdLLeEJxBSQNPvUVUgx0SVzM.png"
+              width={28}
+              height={28}
+              alt="OpenSea"
+              className="size-7 rounded-full object-cover"
+            />
+            <div>
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-primary">Minting on</p>
+              <p className="text-sm font-bold text-foreground">OpenSea</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 text-xs text-muted-foreground sm:items-end">
+
+            <p>© {new Date().getFullYear()} ArchitectsWifHat. The hat stays on.</p>
+            <p>You either get it… or you don&apos;t have the hat yet.</p>
+          </div>
         </div>
       </div>
     </footer>
