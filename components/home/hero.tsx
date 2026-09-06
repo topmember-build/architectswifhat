@@ -30,17 +30,17 @@ export function Hero() {
               Follow on X
             </a>
           </div>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-xl border border-primary/35 bg-primary/10 px-2.5 py-1.5 shadow-md shadow-primary/10">
+          <div className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 px-2 py-1 shadow-sm shadow-primary/10">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Emblem-500x281-rrThHycdLLeEJxBSQNPvUVUgx0SVzM.png"
-              width={26}
-              height={26}
+              width={20}
+              height={20}
               alt="OpenSea"
-              className="size-6 rounded-full object-cover"
+              className="size-5 rounded-full object-cover"
             />
             <div>
-              <p className="font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-primary">Minting on</p>
-              <p className="text-xs font-bold text-foreground">OpenSea</p>
+              <p className="font-mono text-[7px] font-bold uppercase tracking-[0.12em] text-primary">Minting on</p>
+              <p className="text-[11px] font-bold text-foreground">OpenSea</p>
             </div>
           </div>
           <dl className="mt-10 flex gap-8 border-t border-border pt-6">
