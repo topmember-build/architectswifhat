@@ -24,7 +24,7 @@ export default function CollectionPage() {
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div className="max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-arc">The collection</p>
-              <h1 className="mt-5 text-balance text-5xl font-black uppercase tracking-[-0.06em] text-primary sm:text-7xl lg:text-8xl">
+              <h1 className="hat-tagline-glow mt-5 text-balance text-5xl font-black uppercase tracking-[-0.06em] text-primary sm:text-7xl lg:text-8xl">
                 THE HAT STAYS ON.
               </h1>
               <p className="mt-7 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
