@@ -17,7 +17,7 @@ export default function WhitelistPage() {
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-gold">Early access</p>
-              <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight sm:text-6xl">Get your hat in the build.</h1>
+              <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight sm:text-6xl">Get your ArchitectWifHat in the build.</h1>
               <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
                 Everyone gets a fair shot. Complete the community tasks, verify your proof, and add one wallet for a whitelist spot.
               </p>
