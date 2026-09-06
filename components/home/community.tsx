@@ -36,7 +36,7 @@ export function Community() {
 
         <MotionReveal className="mt-14 overflow-hidden rounded-3xl border border-primary/40 bg-primary/10" delay={160}>
           <div className="flex flex-col items-center gap-6 px-6 py-14 text-center sm:px-12">
-            <h3 className="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to earn your hat?</h3>
+            <h3 className="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to earn your ArchitectWifHat?</h3>
             <p className="max-w-xl text-pretty leading-7 text-muted-foreground">
               Whitelist spots are earned, not given. Complete the community tasks, submit your proof, and link your
               wallet to secure a spot.
