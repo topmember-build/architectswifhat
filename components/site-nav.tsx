@@ -23,7 +23,7 @@ export function SiteNav() {
         <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <ArcMark className="size-9" />
           <span className="text-sm font-bold tracking-tight sm:text-base">
-            Architects<span className="text-arc">Wif</span>Hat
+            Architects<span className="text-primary">Wif</span>Hat
           </span>
         </Link>
 
