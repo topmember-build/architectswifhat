@@ -8,11 +8,11 @@ import { SITE } from '@/lib/site'
 const OPENSEA_LOGO = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OpenSea-Logo-TDq9o5VT39506EpB2tsHYTgVI8qoPm.jpg'
 
 const phases = [
-  { name: 'Team', label: '01', description: 'The builders behind the hat get the first look.' },
-  { name: 'Architect List', label: '02', description: 'Early supporters and core community architects.' },
-  { name: 'GTD', label: '03', description: 'Guaranteed access for approved wallets.' },
-  { name: 'FCFS', label: '04', description: 'First come, first served while supply lasts.' },
-  { name: 'Public', label: '05', description: 'Open mint access for everyone.' },
+  { name: 'Team', label: '01', description: 'The builders behind ArchitectsWifHat get the first look.', supply: 'TBA' },
+  { name: 'Architect List', label: '02', description: 'Early supporters and core community architects.', supply: 'TBA' },
+  { name: 'GTD', label: '03', description: 'Guaranteed access for approved wallets.', supply: 'TBA' },
+  { name: 'FCFS', label: '04', description: 'First come, first served while supply lasts.', supply: 'TBA' },
+  { name: 'Public', label: '05', description: 'Open mint access for everyone.', supply: 'TBA' },
 ]
 
 export default function CollectionPage() {
@@ -60,7 +60,7 @@ export default function CollectionPage() {
                   <div className="flex items-center justify-between"><span className="font-mono text-xs text-arc">{phase.label}</span>{index === 0 ? <Check className="size-4 text-arc" /> : <span className="size-2 rounded-full bg-border" />}</div>
                   <h3 className="mt-10 text-xl font-bold">{phase.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{phase.description}</p>
-                  <div className="mt-7 border-t border-border pt-4 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"><p>Mint price: <span className="text-foreground">TBA</span></p><p className="mt-2">Mint date: <span className="text-foreground">TBA</span></p></div>
+                  <div className="mt-7 border-t border-border pt-4 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"><p>Supply: <span className="text-foreground">{phase.supply}</span></p><p className="mt-2">Mint price: <span className="text-foreground">TBA</span></p><p className="mt-2">Mint date: <span className="text-foreground">TBA</span></p></div>
                 </article>
               ))}
             </div>
