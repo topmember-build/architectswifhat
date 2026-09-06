@@ -19,7 +19,7 @@ export default function WhitelistPage() {
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-gold">Early access</p>
               <h1 className="mt-4 text-balance text-4xl font-extrabold tracking-tight sm:text-6xl">Get your hat in the build.</h1>
               <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
-                Complete the community tasks, show your proof, and add the wallet you want considered for a whitelist spot.
+                Everyone gets a fair shot. Complete the community tasks, verify your proof, and add one wallet for a whitelist spot.
               </p>
             </div>
           </div>

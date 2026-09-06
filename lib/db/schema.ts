@@ -48,7 +48,7 @@ export const verification = pgTable('verification', {
 
 export const whitelistApplications = pgTable('whitelist_applications', {
   id: text('id').primaryKey(),
-  userId: text('userId').notNull().unique(),
+  userId: text('userId'),
   wallet: text('wallet').notNull().unique(),
   status: text('status').notNull().default('pending'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
