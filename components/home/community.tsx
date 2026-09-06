@@ -19,7 +19,7 @@ export function Community() {
 
         <MotionReveal className="mt-12 grid gap-4 md:grid-cols-3">
           {VIDEOS.map((src, i) => (
-            <div key={src} className="group overflow-hidden rounded-2xl border border-border bg-card transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10">
+            <div key={src} className="group overflow-hidden rounded-2xl border border-arc/30 bg-card shadow-xl shadow-[#020b32]/25 transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10">
               <video
                 src={src}
                 className="aspect-square w-full object-cover transition duration-700 group-hover:scale-105"
@@ -115,7 +115,7 @@ export function Community() {
           ))}
         </MotionReveal>
 
-        <MotionReveal className="mt-14 overflow-hidden rounded-3xl border border-primary/40 bg-primary/10" delay={160}>
+        <MotionReveal className="mt-14 overflow-hidden rounded-3xl border border-primary/70 bg-[#06184c]/88 shadow-2xl shadow-[#020b32]/30" delay={160}>
           <div className="flex flex-col items-center gap-6 px-6 py-14 text-center sm:px-12">
             <h3 className="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to earn your ArchitectWifHat?</h3>
             <p className="max-w-xl text-pretty leading-7 text-muted-foreground">
