@@ -9,9 +9,9 @@ type TaskId = 'arcFollow' | 'follow' | 'repost' | 'tag' | 'join'
 type TaskDef = { id: TaskId; title: string; description: string; action: string; href: string; proofLabel: string; proofPlaceholder: string }
 const TASKS: TaskDef[] = [
   { id: 'arcFollow', title: 'Follow Arc on X', description: 'Follow the official Arc account for mainnet updates.', action: 'Open Arc on X', href: 'https://x.com/arc', proofLabel: 'Your X profile URL', proofPlaceholder: 'https://x.com/yourhandle' },
-  { id: 'follow', title: 'Follow on X', description: `Follow ${SITE.twitterHandle} to stay in the loop.`, action: 'Open X', href: SITE.twitter, proofLabel: 'Your X profile URL', proofPlaceholder: 'https://x.com/yourhandle' },
-  { id: 'repost', title: 'Repost the pinned post', description: 'Repost the pinned ArchitectsWifHat announcement.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your repost', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
-  { id: 'tag', title: 'Tag 3 Architects', description: 'Tag three friends who need the hat.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your tag post', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
+  { id: 'follow', title: 'Follow ArchitectsWifHat on X', description: `Follow ${SITE.twitterHandle} to stay in the loop.`, action: 'Open X', href: SITE.twitter, proofLabel: 'Your X profile URL', proofPlaceholder: 'https://x.com/yourhandle' },
+  { id: 'repost', title: 'Repost and like the pinned post', description: 'Repost and like the pinned ArchitectsWifHat announcement.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your repost', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
+  { id: 'tag', title: 'Tag 3 Architects/Friends', description: 'Tag three Architects or friends who need the hat.', action: 'Open X', href: SITE.twitter, proofLabel: 'Link to your tag post', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
   { id: 'join', title: 'Share community proof', description: 'Share a public X link showing your community participation.', action: 'Open X', href: SITE.twitter, proofLabel: 'Community proof URL', proofPlaceholder: 'https://x.com/yourhandle/status/...' },
 ]
 const STEPS = ['Tasks', 'Verify proof', 'Wallet', 'Review'] as const
