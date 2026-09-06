@@ -15,7 +15,7 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-24">
         <MotionReveal className="relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-arc">
-            <span className="size-1.5 rounded-full bg-arc" /> Collection born from the Arc community
+            <span className="size-1.5 rounded-full bg-arc" /> A Collection born from the Arc community
           </span>
           <h1 className="mt-6 text-balance text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
             Put the Hat on <span className="text-primary">Architects</span>.
