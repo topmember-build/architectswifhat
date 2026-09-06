@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { BreathingSphere } from '@/components/home/breathing-sphere'
 import { MotionReveal } from '@/components/motion-reveal'
 import { SITE } from '@/lib/site'
 
@@ -46,15 +47,21 @@ export function Hero() {
 
         <MotionReveal className="relative" delay={140}>
           <div className="absolute -inset-4 rounded-[2rem] bg-arc/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-border shadow-2xl shadow-black/40">
+          <div className="relative aspect-square overflow-hidden rounded-[1.75rem] border border-border bg-[radial-gradient(circle_at_center,oklch(0.3_0.08_255),oklch(0.15_0.04_260)_68%)] shadow-2xl shadow-black/40">
             <Image
               src="/architectswifhat-components/hero/arc-hero.png"
               width={1200}
               height={1200}
               priority
               alt="An Architect wearing the burgundy Arc cap and cream Arc tee, arms crossed in front of the Arc logo"
-              className="aspect-square w-full object-cover"
+              className="absolute inset-0 size-full object-cover opacity-35 mix-blend-screen"
             />
+            <BreathingSphere />
+            <div className="pointer-events-none absolute inset-6 rounded-full border border-arc/20" />
+            <div className="pointer-events-none absolute bottom-5 left-5 right-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-arc/70">
+              <span>Architect field / 001</span>
+              <span className="flex items-center gap-2"><span className="size-1.5 animate-pulse rounded-full bg-arc" /> evolving</span>
+            </div>
           </div>
         </MotionReveal>
       </div>
